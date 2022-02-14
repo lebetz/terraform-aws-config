@@ -87,6 +87,18 @@ variable "password_max_age" {
   default     = 90
 }
 
+variable "check_access_keys_rotated" {
+  description = "Enable access-keys-rotated rule"
+  type        = bool
+  default     = false
+}
+
+variable "max_access_key_age" {
+  description = "Maximum number of days without access key rotation."
+  type        = number
+  default     = 90
+}
+
 variable "check_root_account_mfa_enabled" {
   description = "Enable root-account-mfa-enabled rule"
   type        = bool
@@ -125,6 +137,12 @@ variable "check_cloud_trail_encryption" {
 
 variable "check_cloud_trail_log_file_validation" {
   description = "Enable cloud-trail-log-file-validation-enabled rule"
+  type        = bool
+  default     = false
+}
+
+variable "check_cloudtrail_security_trail" {
+  description = "Enable cloudtrail-security-trail-enabled rule"
   type        = bool
   default     = false
 }
@@ -207,10 +225,58 @@ variable "check_ec2_encrypted_volumes" {
   default     = true
 }
 
+variable "check_ec2_instances_in_vpc" {
+  description = "Enable ec2-instances-in-vpc rule"
+  type        = bool
+  default     = false
+}
+
+variable "ec2_vpc_id" {
+  description = "VPC ID to which EC2 instances have to belong to in order to be compliant."
+  type        = string
+  default     = ""
+}
+
+variable "check_ec2_instance_profile_attached" {
+  description = "Enable ec2-instance-profile-attached rule"
+  type        = bool
+  default     = false
+}
+
+variable "ec2_instance_profile_arns" {
+  description = "Comma-separated list of IAM profile Amazon Resource Names (ARNs) that can be attached to Amazon EC2 instances."
+  type        = string
+  default     = ""
+}
+
+variable "check_ec2_instance_managed_by_systems_manager" {
+  description = "Enable ec2-instance-managed-by-systems-manager rule"
+  type        = bool
+  default     = false
+}
+
+variable "check_ec2_instance_no_public_ip" {
+  description = "Enable ec2-instance-no-public-ip rule"
+  type        = bool
+  default     = false
+}
+
+variable "check_autoscaling_launch_config_public_ip_disabled" {
+  description = "Enable autoscaling-launch-config-public-ip-disabled rule"
+  type        = bool
+  default     = false
+}
+
 variable "check_rds_storage_encrypted" {
   description = "Enable rds-storage-encrypted rule"
   type        = bool
   default     = true
+}
+
+variable "check_rds_snapshot_encrypted" {
+  description = "Enable rds-snapshot-encrypted rule"
+  type        = bool
+  default     = false
 }
 
 variable "check_rds_snapshots_public_prohibited" {
@@ -307,4 +373,40 @@ variable "check_ec2_imdsv2" {
   description = "Enable IMDSv2 rule"
   type        = bool
   default     = false
+}
+
+variable "check_eks_secrets_encrypted" {
+  description = "Enable eks-secrets-encrypted rule"
+  type        = bool
+  default     = false
+}
+
+variable "eks_kms_key_arns" {
+  description = "Comma separated list of ARN of the KMS key that should be used for encrypted secrets in an EKS cluster."
+  type        = string
+  default     = ""
+}
+
+variable "check_eks_endpoint_no_public_access" {
+  description = "Enable eks-endpoint-no-public-access rule"
+  type        = bool
+  default     = false
+}
+
+variable "check_kms_cmk_not_scheduled_for_deletion" {
+  description = "Enable kms-cmk-not-scheduled-for-deletion rule"
+  type        = bool
+  default     = false
+}
+
+variable "kms_key_ids" {
+  description = "Comma-separated list of specific customer managed key IDs not to be scheduled for deletion. If you do not specify any keys, the rule checks all the keys."
+  type        = string
+  default     = ""
+}
+
+variable "vpc_endpoint_service_names" {
+  description = "List of services for which a service-vpc-endpoint-enabled rule should be created"
+  type        = list(string)
+  default     = []
 }

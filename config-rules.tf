@@ -28,12 +28,77 @@ locals {
       cw_loggroup_retention_period = var.cw_loggroup_retention_period
     }
   )
+
+  aws_config_access_keys_rotated = templatefile("${path.module}/config-policies/access-keys-rotated.tpl",
+    {
+      max_access_key_age = var.max_access_key_age
+    }
+  )
+
+  aws_config_ec2_instances_in_vpc = templatefile("${path.module}/config-policies/ec2-instances-in-vpc.tpl",
+    {
+      ec2_vpc_id = var.ec2_vpc_id
+    }
+  )
+
+  aws_config_ec2_instance_profile_attached = templatefile("${path.module}/config-policies/ec2-instance-profile-attached.tpl",
+    {
+      ec2_instance_profile_arns = var.ec2_instance_profile_arns
+    }
+  )
+
+  aws_config_eks_secrets_encrypted = templatefile("${path.module}/config-policies/eks-secrets-encrypted.tpl",
+    {
+      eks_kms_key_arns = var.eks_kms_key_arns
+    }
+  )
+
+  aws_config_kms_cmk_not_scheduled_for_deletion = templatefile("${path.module}/config-policies/kms-cmk-not-scheduled-for-deletion.tpl",
+    {
+      kms_key_ids = var.kms_key_ids
+    }
+  )
 }
 
 
 #
 # AWS Config Rules
 #
+
+resource "aws_config_config_rule" "access-keys-rotated" {
+  count            = var.check_access_keys_rotated ? 1 : 0
+  name             = "access-keys-rotated"
+  description      = "Checks if the active access keys are rotated within the number of days specified in maxAccessKeyAge."
+  input_parameters = local.aws_config_access_keys_rotated
+
+  source {
+    owner             = "AWS"
+    source_identifier = "ACCESS_KEYS_ROTATED"
+  }
+
+  maximum_execution_frequency = var.config_max_execution_frequency
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "autoscaling-launch-config-public-ip-disabled" {
+  count       = var.check_autoscaling_launch_config_public_ip_disabled ? 1 : 0
+  name        = "autoscaling-launch-config-public-ip-disabled"
+  description = "Checks if Amazon EC2 Auto Scaling groups have public IP addresses enabled through Launch Configurations."
+
+  source {
+    owner             = "AWS"
+    source_identifier = "AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED"
+  }
+
+  maximum_execution_frequency = var.config_max_execution_frequency
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
 
 resource "aws_config_config_rule" "iam-password-policy" {
   count            = var.check_iam_password_policy ? 1 : 0
@@ -112,6 +177,23 @@ resource "aws_config_config_rule" "cloud-trail-log-file-validation-enabled" {
   source {
     owner             = "AWS"
     source_identifier = "CLOUD_TRAIL_LOG_FILE_VALIDATION_ENABLED"
+  }
+
+  maximum_execution_frequency = var.config_max_execution_frequency
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "cloudtrail-security-trail-enabled" {
+  count       = var.check_cloudtrail_security_trail ? 1 : 0
+  name        = "cloudtrail-security-trail-enabled"
+  description = "Checks that there is at least one AWS CloudTrail trail defined with security best practices."
+
+  source {
+    owner             = "AWS"
+    source_identifier = "CLOUDTRAIL_SECURITY_TRAIL_ENABLED"
   }
 
   maximum_execution_frequency = var.config_max_execution_frequency
@@ -201,6 +283,68 @@ resource "aws_config_config_rule" "ec2-imdsv2-check" {
   depends_on = [aws_config_configuration_recorder.main]
 }
 
+resource "aws_config_config_rule" "ec2-instance-managed-by-systems-manager" {
+  count       = var.check_ec2_instance_managed_by_systems_manager ? 1 : 0
+  name        = "ec2-instance-managed-by-systems-manager"
+  description = "Checks if the Amazon EC2 instances in your account are managed by AWS Systems Manager."
+
+  source {
+    owner             = "AWS"
+    source_identifier = "EC2_INSTANCE_MANAGED_BY_SSM"
+  }
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "ec2-instance-no-public-ip" {
+  count       = var.check_ec2_instance_no_public_ip ? 1 : 0
+  name        = "ec2-instance-no-public-ip"
+  description = "Checks if the Amazon EC2 instances in your account are managed by AWS Systems Manager."
+
+  source {
+    owner             = "AWS"
+    source_identifier = "EC2_INSTANCE_NO_PUBLIC_IP"
+  }
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "ec2-instance-profile-attached" {
+  count            = var.check_ec2_instance_profile_attached ? 1 : 0
+  name             = "ec2-instance-profile-attached"
+  description      = "Checks if an Amazon Elastic Compute Cloud (Amazon EC2) instance has an Identity and Access Management (IAM) profile attached to it."
+  input_parameters = local.aws_config_ec2_instance_profile_attached
+
+  source {
+    owner             = "AWS"
+    source_identifier = "EC2_INSTANCE_PROFILE_ATTACHED"
+  }
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "ec2-instances-in-vpc" {
+  count            = var.check_ec2_instances_in_vpc ? 1 : 0
+  name             = "ec2-instances-in-vpc"
+  description      = "Checks if your EC2 instances belong to a virtual private cloud (VPC). Optionally, you can specify the VPC ID to associate with your instances."
+  input_parameters = local.aws_config_ec2_instances_in_vpc
+
+  source {
+    owner             = "AWS"
+    source_identifier = "INSTANCES_IN_VPC"
+  }
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
 resource "aws_config_config_rule" "ebs_snapshot_public_restorable" {
   count       = var.check_ebs_snapshot_public_restorable ? 1 : 0
   name        = "ebs-snapshot-public-restorable"
@@ -254,6 +398,21 @@ resource "aws_config_config_rule" "rds-storage-encrypted" {
   source {
     owner             = "AWS"
     source_identifier = "RDS_STORAGE_ENCRYPTED"
+  }
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "rds-snapshot-encrypted" {
+  count       = var.check_rds_snapshot_encrypted ? 1 : 0
+  name        = "rds-snapshot-encrypted"
+  description = "Checks whether Amazon Relational Database Service (Amazon RDS) DB snapshots are encrypted."
+
+  source {
+    owner             = "AWS"
+    source_identifier = "RDS_SNAPSHOT_ENCRYPTED"
   }
 
   tags = var.tags
@@ -498,6 +657,77 @@ resource "aws_config_config_rule" "restricted_ssh" {
     owner             = "AWS"
     source_identifier = "INCOMING_SSH_DISABLED"
   }
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "eks-endpoint-no-public-access" {
+  count       = var.check_eks_endpoint_no_public_access ? 1 : 0
+  name        = "eks-endpoint-no-public-access"
+  description = "Checks whether Amazon Elastic Kubernetes Service (Amazon EKS) endpoint is not publicly accessible."
+
+  source {
+    owner             = "AWS"
+    source_identifier = "EKS_ENDPOINT_NO_PUBLIC_ACCESS"
+  }
+
+  maximum_execution_frequency = var.config_max_execution_frequency
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "eks-secrets-encrypted" {
+  count            = var.check_eks_secrets_encrypted ? 1 : 0
+  name             = "eks-secrets-encrypted"
+  description      = "Checks if Amazon Elastic Kubernetes Service clusters are configured to have Kubernetes secrets encrypted using AWS Key Management Service (KMS) keys."
+  input_parameters = local.aws_config_eks_secrets_encrypted
+
+  source {
+    owner             = "AWS"
+    source_identifier = "EKS_SECRETS_ENCRYPTED"
+  }
+
+  maximum_execution_frequency = var.config_max_execution_frequency
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "kms-cmk-not-scheduled-for-deletion" {
+  count            = var.check_kms_cmk_not_scheduled_for_deletion ? 1 : 0
+  name             = "kms-cmk-not-scheduled-for-deletion"
+  description      = "Checks if AWS KMS keys (KMS keys) are not scheduled for deletion in AWS Key Management Service (AWS KMS)."
+  input_parameters = local.aws_config_kms_cmk_not_scheduled_for_deletion
+
+  source {
+    owner             = "AWS"
+    source_identifier = "KMS_CMK_NOT_SCHEDULED_FOR_DELETION"
+  }
+
+  maximum_execution_frequency = var.config_max_execution_frequency
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "service-vpc-endpoint-enabled" {
+  for_each         = toset(var.vpc_endpoint_service_names)
+  name             = "service-vpc-endpoint-enabled-${each.value}"
+  description      = "Checks whether Service Endpoint for the ${each.value} service is created for each Amazon VPC."
+  input_parameters = "{\"serviceName\": \"${each.value}\"}"
+
+  source {
+    owner             = "AWS"
+    source_identifier = "SERVICE_VPC_ENDPOINT_ENABLED"
+  }
+
+  maximum_execution_frequency = var.config_max_execution_frequency
 
   tags = var.tags
 

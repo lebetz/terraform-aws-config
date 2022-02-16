@@ -177,6 +177,12 @@ variable "check_instances_in_vpc" {
   default     = true
 }
 
+variable "ec2_vpc_id" {
+  description = "VPC ID to which EC2 instances have to belong to in order to be compliant."
+  type        = string
+  default     = null
+}
+
 variable "check_acm_certificate_expiration_check" {
   description = "Enable acm-certificate-expiration-check rule"
   type        = bool
@@ -225,18 +231,6 @@ variable "check_ec2_encrypted_volumes" {
   default     = true
 }
 
-variable "check_ec2_instances_in_vpc" {
-  description = "Enable ec2-instances-in-vpc rule"
-  type        = bool
-  default     = false
-}
-
-variable "ec2_vpc_id" {
-  description = "VPC ID to which EC2 instances have to belong to in order to be compliant."
-  type        = string
-  default     = ""
-}
-
 variable "check_ec2_instance_profile_attached" {
   description = "Enable ec2-instance-profile-attached rule"
   type        = bool
@@ -246,7 +240,7 @@ variable "check_ec2_instance_profile_attached" {
 variable "ec2_instance_profile_arns" {
   description = "Comma-separated list of IAM profile Amazon Resource Names (ARNs) that can be attached to Amazon EC2 instances."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "check_ec2_instance_managed_by_systems_manager" {
@@ -289,6 +283,12 @@ variable "check_s3_bucket_public_write_prohibited" {
   description = "Enable s3-bucket-public-write-prohibited rule"
   type        = bool
   default     = true
+}
+
+variable "check_s3_account_level_public_access_blocks" {
+  description = "Enable s3-account-level-public-access-blocks rule"
+  type        = bool
+  default     = false
 }
 
 variable "check_cloudwatch_log_group_encrypted" {
@@ -384,7 +384,7 @@ variable "check_eks_secrets_encrypted" {
 variable "eks_kms_key_arns" {
   description = "Comma separated list of ARN of the KMS key that should be used for encrypted secrets in an EKS cluster."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "check_eks_endpoint_no_public_access" {
@@ -402,7 +402,7 @@ variable "check_kms_cmk_not_scheduled_for_deletion" {
 variable "kms_key_ids" {
   description = "Comma-separated list of specific customer managed key IDs not to be scheduled for deletion. If you do not specify any keys, the rule checks all the keys."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "vpc_endpoint_service_names" {

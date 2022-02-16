@@ -35,25 +35,25 @@ locals {
     }
   )
 
-  aws_config_ec2_instances_in_vpc = templatefile("${path.module}/config-policies/ec2-instances-in-vpc.tpl",
+  aws_config_instances_in_vpc = var.ec2_vpc_id == null ? null : templatefile("${path.module}/config-policies/instances-in-vpc.tpl",
     {
       ec2_vpc_id = var.ec2_vpc_id
     }
   )
 
-  aws_config_ec2_instance_profile_attached = templatefile("${path.module}/config-policies/ec2-instance-profile-attached.tpl",
+  aws_config_ec2_instance_profile_attached = var.ec2_instance_profile_arns == null ? null : templatefile("${path.module}/config-policies/ec2-instance-profile-attached.tpl",
     {
       ec2_instance_profile_arns = var.ec2_instance_profile_arns
     }
   )
 
-  aws_config_eks_secrets_encrypted = templatefile("${path.module}/config-policies/eks-secrets-encrypted.tpl",
+  aws_config_eks_secrets_encrypted = var.eks_kms_key_arns == null ? null : templatefile("${path.module}/config-policies/eks-secrets-encrypted.tpl",
     {
       eks_kms_key_arns = var.eks_kms_key_arns
     }
   )
 
-  aws_config_kms_cmk_not_scheduled_for_deletion = templatefile("${path.module}/config-policies/kms-cmk-not-scheduled-for-deletion.tpl",
+  aws_config_kms_cmk_not_scheduled_for_deletion = var.kms_key_ids == null ? null : templatefile("${path.module}/config-policies/kms-cmk-not-scheduled-for-deletion.tpl",
     {
       kms_key_ids = var.kms_key_ids
     }
@@ -92,8 +92,6 @@ resource "aws_config_config_rule" "autoscaling-launch-config-public-ip-disabled"
     owner             = "AWS"
     source_identifier = "AUTOSCALING_LAUNCH_CONFIG_PUBLIC_IP_DISABLED"
   }
-
-  maximum_execution_frequency = var.config_max_execution_frequency
 
   tags = var.tags
 
@@ -204,9 +202,10 @@ resource "aws_config_config_rule" "cloudtrail-security-trail-enabled" {
 }
 
 resource "aws_config_config_rule" "instances-in-vpc" {
-  count       = var.check_instances_in_vpc ? 1 : 0
-  name        = "instances-in-vpc"
-  description = "Ensure all EC2 instances run in a VPC"
+  count            = var.check_instances_in_vpc ? 1 : 0
+  name             = "instances-in-vpc"
+  description      = "Ensure all EC2 instances run in a VPC"
+  input_parameters = local.aws_config_instances_in_vpc
 
   source {
     owner             = "AWS"
@@ -322,22 +321,6 @@ resource "aws_config_config_rule" "ec2-instance-profile-attached" {
   source {
     owner             = "AWS"
     source_identifier = "EC2_INSTANCE_PROFILE_ATTACHED"
-  }
-
-  tags = var.tags
-
-  depends_on = [aws_config_configuration_recorder.main]
-}
-
-resource "aws_config_config_rule" "ec2-instances-in-vpc" {
-  count            = var.check_ec2_instances_in_vpc ? 1 : 0
-  name             = "ec2-instances-in-vpc"
-  description      = "Checks if your EC2 instances belong to a virtual private cloud (VPC). Optionally, you can specify the VPC ID to associate with your instances."
-  input_parameters = local.aws_config_ec2_instances_in_vpc
-
-  source {
-    owner             = "AWS"
-    source_identifier = "INSTANCES_IN_VPC"
   }
 
   tags = var.tags
@@ -475,6 +458,21 @@ resource "aws_config_config_rule" "s3-bucket-public-write-prohibited" {
   source {
     owner             = "AWS"
     source_identifier = "S3_BUCKET_PUBLIC_WRITE_PROHIBITED"
+  }
+
+  tags = var.tags
+
+  depends_on = [aws_config_configuration_recorder.main]
+}
+
+resource "aws_config_config_rule" "s3-account-level-public-access-blocks" {
+  count       = var.check_s3_account_level_public_access_blocks ? 1 : 0
+  name        = "s3-account-level-public-access-blocks"
+  description = "Checks if the required public access block settings are configured from account level."
+
+  source {
+    owner             = "AWS"
+    source_identifier = "S3_ACCOUNT_LEVEL_PUBLIC_ACCESS_BLOCKS"
   }
 
   tags = var.tags

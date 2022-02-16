@@ -105,34 +105,46 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [aws_config_config_rule.access-keys-rotated](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.acm-certificate-expiration-check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.approved-amis-by-tag](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.autoscaling-launch-config-public-ip-disabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.cloud-trail-encryption-enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.cloud-trail-log-file-validation-enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.cloudtrail-enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.cloudtrail-security-trail-enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.cloudwatch_log_group_encrypted](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.cw_loggroup_retention_period_check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.ebs_snapshot_public_restorable](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.ec2-encrypted-volumes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.ec2-imdsv2-check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.ec2-instance-managed-by-systems-manager](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.ec2-instance-no-public-ip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.ec2-instance-profile-attached](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.ec2-volume-inuse-check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.eip_attached](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.eks-endpoint-no-public-access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.eks-secrets-encrypted](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.guardduty-enabled-centralized](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.iam-group-has-users-check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.iam-password-policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.iam-user-no-policies-check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.iam_root_access_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.instances-in-vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.kms-cmk-not-scheduled-for-deletion](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.mfa_enabled_for_iam_console_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.multi-region-cloud-trail-enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.rds-instance-public-access-check](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.rds-snapshot-encrypted](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.rds-snapshots-public-prohibited](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.rds-storage-encrypted](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.required-tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.restricted_ssh](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.root-account-mfa-enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.s3-account-level-public-access-blocks](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.s3-bucket-public-write-prohibited](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.s3_bucket_ssl_requests_only](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
+| [aws_config_config_rule.service-vpc-endpoint-enabled](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_config_rule.vpc_default_security_group_closed](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_config_rule) | resource |
 | [aws_config_configuration_aggregator.organization](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_aggregator) | resource |
 | [aws_config_configuration_recorder.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder) | resource |
@@ -157,31 +169,43 @@ No modules.
 | <a name="input_acm_days_to_expiration"></a> [acm\_days\_to\_expiration](#input\_acm\_days\_to\_expiration) | Specify the number of days before the rule flags the ACM Certificate as noncompliant. | `number` | `14` | no |
 | <a name="input_aggregate_organization"></a> [aggregate\_organization](#input\_aggregate\_organization) | Aggregate compliance data by organization | `bool` | `false` | no |
 | <a name="input_ami_required_tag_key_value"></a> [ami\_required\_tag\_key\_value](#input\_ami\_required\_tag\_key\_value) | Tag/s key and value which AMI has to have in order to be compliant: Example: key1:value1,key2:value2 | `string` | `""` | no |
+| <a name="input_check_access_keys_rotated"></a> [check\_access\_keys\_rotated](#input\_check\_access\_keys\_rotated) | Enable access-keys-rotated rule | `bool` | `false` | no |
 | <a name="input_check_acm_certificate_expiration_check"></a> [check\_acm\_certificate\_expiration\_check](#input\_check\_acm\_certificate\_expiration\_check) | Enable acm-certificate-expiration-check rule | `bool` | `true` | no |
 | <a name="input_check_approved_amis_by_tag"></a> [check\_approved\_amis\_by\_tag](#input\_check\_approved\_amis\_by\_tag) | Enable approved-amis-by-tag rule | `bool` | `false` | no |
+| <a name="input_check_autoscaling_launch_config_public_ip_disabled"></a> [check\_autoscaling\_launch\_config\_public\_ip\_disabled](#input\_check\_autoscaling\_launch\_config\_public\_ip\_disabled) | Enable autoscaling-launch-config-public-ip-disabled rule | `bool` | `false` | no |
 | <a name="input_check_cloud_trail_encryption"></a> [check\_cloud\_trail\_encryption](#input\_check\_cloud\_trail\_encryption) | Enable cloud-trail-encryption-enabled rule | `bool` | `false` | no |
 | <a name="input_check_cloud_trail_log_file_validation"></a> [check\_cloud\_trail\_log\_file\_validation](#input\_check\_cloud\_trail\_log\_file\_validation) | Enable cloud-trail-log-file-validation-enabled rule | `bool` | `false` | no |
 | <a name="input_check_cloudtrail_enabled"></a> [check\_cloudtrail\_enabled](#input\_check\_cloudtrail\_enabled) | Enable cloudtrail-enabled rule | `bool` | `true` | no |
+| <a name="input_check_cloudtrail_security_trail"></a> [check\_cloudtrail\_security\_trail](#input\_check\_cloudtrail\_security\_trail) | Enable cloudtrail-security-trail-enabled rule | `bool` | `false` | no |
 | <a name="input_check_cloudwatch_log_group_encrypted"></a> [check\_cloudwatch\_log\_group\_encrypted](#input\_check\_cloudwatch\_log\_group\_encrypted) | Enable cloudwatch-log-group-encryption rule | `bool` | `true` | no |
+| <a name="input_check_cw_loggroup_retention_period"></a> [check\_cw\_loggroup\_retention\_period](#input\_check\_cw\_loggroup\_retention\_period) | Enable cloudwatch-log-group-retention-period-check rule | `bool` | `false` | no |
 | <a name="input_check_ebs_snapshot_public_restorable"></a> [check\_ebs\_snapshot\_public\_restorable](#input\_check\_ebs\_snapshot\_public\_restorable) | Enable ebs-snapshot-public-restorable rule | `bool` | `true` | no |
 | <a name="input_check_ec2_encrypted_volumes"></a> [check\_ec2\_encrypted\_volumes](#input\_check\_ec2\_encrypted\_volumes) | Enable ec2-encrypted-volumes rule | `bool` | `true` | no |
 | <a name="input_check_ec2_imdsv2"></a> [check\_ec2\_imdsv2](#input\_check\_ec2\_imdsv2) | Enable IMDSv2 rule | `bool` | `false` | no |
+| <a name="input_check_ec2_instance_managed_by_systems_manager"></a> [check\_ec2\_instance\_managed\_by\_systems\_manager](#input\_check\_ec2\_instance\_managed\_by\_systems\_manager) | Enable ec2-instance-managed-by-systems-manager rule | `bool` | `false` | no |
+| <a name="input_check_ec2_instance_no_public_ip"></a> [check\_ec2\_instance\_no\_public\_ip](#input\_check\_ec2\_instance\_no\_public\_ip) | Enable ec2-instance-no-public-ip rule | `bool` | `false` | no |
+| <a name="input_check_ec2_instance_profile_attached"></a> [check\_ec2\_instance\_profile\_attached](#input\_check\_ec2\_instance\_profile\_attached) | Enable ec2-instance-profile-attached rule | `bool` | `false` | no |
 | <a name="input_check_ec2_volume_inuse_check"></a> [check\_ec2\_volume\_inuse\_check](#input\_check\_ec2\_volume\_inuse\_check) | Enable ec2-volume-inuse-check rule | `bool` | `true` | no |
 | <a name="input_check_eip_attached"></a> [check\_eip\_attached](#input\_check\_eip\_attached) | Enable eip-attached rule | `bool` | `false` | no |
+| <a name="input_check_eks_endpoint_no_public_access"></a> [check\_eks\_endpoint\_no\_public\_access](#input\_check\_eks\_endpoint\_no\_public\_access) | Enable eks-endpoint-no-public-access rule | `bool` | `false` | no |
+| <a name="input_check_eks_secrets_encrypted"></a> [check\_eks\_secrets\_encrypted](#input\_check\_eks\_secrets\_encrypted) | Enable eks-secrets-encrypted rule | `bool` | `false` | no |
 | <a name="input_check_guard_duty"></a> [check\_guard\_duty](#input\_check\_guard\_duty) | Enable guardduty-enabled-centralized rule | `bool` | `false` | no |
 | <a name="input_check_iam_group_has_users_check"></a> [check\_iam\_group\_has\_users\_check](#input\_check\_iam\_group\_has\_users\_check) | Enable iam-group-has-users-check rule | `bool` | `true` | no |
 | <a name="input_check_iam_password_policy"></a> [check\_iam\_password\_policy](#input\_check\_iam\_password\_policy) | Enable iam-password-policy rule | `bool` | `true` | no |
 | <a name="input_check_iam_root_access_key"></a> [check\_iam\_root\_access\_key](#input\_check\_iam\_root\_access\_key) | Enable iam-root-access-key rule | `bool` | `true` | no |
 | <a name="input_check_iam_user_no_policies_check"></a> [check\_iam\_user\_no\_policies\_check](#input\_check\_iam\_user\_no\_policies\_check) | Enable iam-user-no-policies-check rule | `bool` | `true` | no |
 | <a name="input_check_instances_in_vpc"></a> [check\_instances\_in\_vpc](#input\_check\_instances\_in\_vpc) | Enable instances-in-vpc rule | `bool` | `true` | no |
+| <a name="input_check_kms_cmk_not_scheduled_for_deletion"></a> [check\_kms\_cmk\_not\_scheduled\_for\_deletion](#input\_check\_kms\_cmk\_not\_scheduled\_for\_deletion) | Enable kms-cmk-not-scheduled-for-deletion rule | `bool` | `false` | no |
 | <a name="input_check_mfa_enabled_for_iam_console_access"></a> [check\_mfa\_enabled\_for\_iam\_console\_access](#input\_check\_mfa\_enabled\_for\_iam\_console\_access) | Enable mfa-enabled-for-iam-console-access rule | `bool` | `false` | no |
 | <a name="input_check_multi_region_cloud_trail"></a> [check\_multi\_region\_cloud\_trail](#input\_check\_multi\_region\_cloud\_trail) | Enable multi-region-cloud-trail-enabled rule | `bool` | `false` | no |
 | <a name="input_check_rds_public_access"></a> [check\_rds\_public\_access](#input\_check\_rds\_public\_access) | Enable rds-instance-public-access-check rule | `bool` | `false` | no |
+| <a name="input_check_rds_snapshot_encrypted"></a> [check\_rds\_snapshot\_encrypted](#input\_check\_rds\_snapshot\_encrypted) | Enable rds-snapshot-encrypted rule | `bool` | `false` | no |
 | <a name="input_check_rds_snapshots_public_prohibited"></a> [check\_rds\_snapshots\_public\_prohibited](#input\_check\_rds\_snapshots\_public\_prohibited) | Enable rds-snapshots-public-prohibited rule | `bool` | `true` | no |
 | <a name="input_check_rds_storage_encrypted"></a> [check\_rds\_storage\_encrypted](#input\_check\_rds\_storage\_encrypted) | Enable rds-storage-encrypted rule | `bool` | `true` | no |
 | <a name="input_check_required_tags"></a> [check\_required\_tags](#input\_check\_required\_tags) | Enable required-tags rule | `bool` | `false` | no |
 | <a name="input_check_restricted_ssh"></a> [check\_restricted\_ssh](#input\_check\_restricted\_ssh) | Enable restricted-ssh rule | `bool` | `false` | no |
 | <a name="input_check_root_account_mfa_enabled"></a> [check\_root\_account\_mfa\_enabled](#input\_check\_root\_account\_mfa\_enabled) | Enable root-account-mfa-enabled rule | `bool` | `false` | no |
+| <a name="input_check_s3_account_level_public_access_blocks"></a> [check\_s3\_account\_level\_public\_access\_blocks](#input\_check\_s3\_account\_level\_public\_access\_blocks) | Enable s3-account-level-public-access-blocks rule | `bool` | `false` | no |
 | <a name="input_check_s3_bucket_public_write_prohibited"></a> [check\_s3\_bucket\_public\_write\_prohibited](#input\_check\_s3\_bucket\_public\_write\_prohibited) | Enable s3-bucket-public-write-prohibited rule | `bool` | `true` | no |
 | <a name="input_check_s3_bucket_ssl_requests_only"></a> [check\_s3\_bucket\_ssl\_requests\_only](#input\_check\_s3\_bucket\_ssl\_requests\_only) | Enable s3-bucket-ssl-requests-only rule | `bool` | `true` | no |
 | <a name="input_check_vpc_default_security_group_closed"></a> [check\_vpc\_default\_security\_group\_closed](#input\_check\_vpc\_default\_security\_group\_closed) | Enable vpc-default-security-group-closed rule | `bool` | `true` | no |
@@ -193,9 +217,13 @@ No modules.
 | <a name="input_config_name"></a> [config\_name](#input\_config\_name) | The name of the AWS Config instance. | `string` | `"aws-config"` | no |
 | <a name="input_config_sns_topic_arn"></a> [config\_sns\_topic\_arn](#input\_config\_sns\_topic\_arn) | An SNS topic to stream configuration changes and notifications to. | `string` | `null` | no |
 | <a name="input_cw_loggroup_retention_period"></a> [cw\_loggroup\_retention\_period](#input\_cw\_loggroup\_retention\_period) | Retention period for cloudwatch logs in number of days | `number` | `3653` | no |
-| <a name="input_cw_loggroup_retention_period_check"></a> [cw\_loggroup\_retention\_period\_check](#input\_cw\_loggroup\_retention\_period\_check) | Enable cloudwatch-log-group-retention-period-check rule | `bool` | `false` | no |
+| <a name="input_ec2_instance_profile_arns"></a> [ec2\_instance\_profile\_arns](#input\_ec2\_instance\_profile\_arns) | Comma-separated list of IAM profile Amazon Resource Names (ARNs) that can be attached to Amazon EC2 instances. | `string` | `null` | no |
+| <a name="input_ec2_vpc_id"></a> [ec2\_vpc\_id](#input\_ec2\_vpc\_id) | VPC ID to which EC2 instances have to belong to in order to be compliant. | `string` | `null` | no |
+| <a name="input_eks_kms_key_arns"></a> [eks\_kms\_key\_arns](#input\_eks\_kms\_key\_arns) | Comma separated list of ARN of the KMS key that should be used for encrypted secrets in an EKS cluster. | `string` | `null` | no |
 | <a name="input_enable_config_recorder"></a> [enable\_config\_recorder](#input\_enable\_config\_recorder) | Enables configuring the AWS Config recorder resources in this module. | `bool` | `true` | no |
 | <a name="input_include_global_resource_types"></a> [include\_global\_resource\_types](#input\_include\_global\_resource\_types) | Specifies whether AWS Config includes all supported types of global resources with the resources that it records. | `bool` | `true` | no |
+| <a name="input_kms_key_ids"></a> [kms\_key\_ids](#input\_kms\_key\_ids) | Comma-separated list of specific customer managed key IDs not to be scheduled for deletion. If you do not specify any keys, the rule checks all the keys. | `string` | `null` | no |
+| <a name="input_max_access_key_age"></a> [max\_access\_key\_age](#input\_max\_access\_key\_age) | Maximum number of days without access key rotation. | `number` | `90` | no |
 | <a name="input_password_max_age"></a> [password\_max\_age](#input\_password\_max\_age) | Number of days before password expiration. | `number` | `90` | no |
 | <a name="input_password_min_length"></a> [password\_min\_length](#input\_password\_min\_length) | Password minimum length. | `number` | `14` | no |
 | <a name="input_password_require_lowercase"></a> [password\_require\_lowercase](#input\_password\_require\_lowercase) | Require at least one lowercase character in password. | `bool` | `true` | no |
@@ -206,6 +234,7 @@ No modules.
 | <a name="input_required_tags"></a> [required\_tags](#input\_required\_tags) | A map of required resource tags. Format is tagNKey, tagNValue, where N is int. Values are optional. | `map(string)` | `{}` | no |
 | <a name="input_required_tags_resource_types"></a> [required\_tags\_resource\_types](#input\_required\_tags\_resource\_types) | Resource types to check for tags. | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to AWS Config resources | `map(string)` | `{}` | no |
+| <a name="input_vpc_endpoint_service_names"></a> [vpc\_endpoint\_service\_names](#input\_vpc\_endpoint\_service\_names) | List of services for which a service-vpc-endpoint-enabled rule should be created | `list(string)` | `[]` | no |
 
 ## Outputs
 
